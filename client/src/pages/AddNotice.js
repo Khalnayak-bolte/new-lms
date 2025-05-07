@@ -12,7 +12,7 @@ const AddNotice = () => {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/notice',
+        '/api/notice',
         { title, content },
         { headers: { Authorization: `Bearer ${token}` } }
       );

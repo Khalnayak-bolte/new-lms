@@ -11,11 +11,11 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const courseRes = await axios.get('http://localhost:5000/api/courses');
-      const assignmentRes = await axios.get('http://localhost:5000/api/assignments', {
+      const courseRes = await axios.get('/api/courses');
+      const assignmentRes = await axios.get('/api/assignments', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const userRes = await axios.get('http://localhost:5000/api/admin/users', {
+      const userRes = await axios.get('/api/admin/users', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   const handleDelete = async (type, id) => {
     if (!window.confirm(`Are you sure you want to delete this ${type}?`)) return;
 
-    const url = `http://localhost:5000/api/admin/${type}/${id}`;
+    const url = `/api/admin/${type}/${id}`;
     try {
       await axios.delete(url, {
         headers: { Authorization: `Bearer ${token}` },
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
   const handleClear = async (type) => {
     if (!window.confirm(`Are you sure you want to clear ALL ${type}?`)) return;
 
-    const url = `http://localhost:5000/api/admin/${type}/clear`;
+    const url = `/api/admin/${type}/clear`;
     try {
       await axios.delete(url, {
         headers: { Authorization: `Bearer ${token}` },

@@ -9,7 +9,7 @@ const User = require('../models/User');
 const { authenticateUser, authorizeRoles } = require('../middleware/authMiddleware');
 
 // 🔴 Get all users except admin
-router.get('/users', authenticateUser, authorizeRoles('admin'), async (req, res) => {
+router.post('/users', authenticateUser, authorizeRoles('admin'), async (req, res) => {
   try {
     const users = await User.find({ role: { $ne: 'admin' } });
     res.json(users);

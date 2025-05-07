@@ -19,10 +19,10 @@ const {
 const upload = multer({ dest: 'uploads/' });
 
 // 📚 Public - View all courses
-router.get('/', getAllCourses);
+router.post('/', getAllCourses);
 
 // 👤 Student - View enrolled courses
-router.get('/enrolled', authenticateUser, authorizeRoles('student'), getEnrolledCourses);
+router.post('/enrolled', authenticateUser, authorizeRoles('student'), getEnrolledCourses);
 
 // ✅ Student - Enroll in a course
 router.post('/enroll/:courseId', authenticateUser, authorizeRoles('student'), enrollInCourse);
@@ -37,6 +37,6 @@ router.post(
 );
 
 // 🔍 Public - Get course by ID
-router.get('/:id', getCourseById);
+ router.post('/:id', getCourseById);
 
 module.exports = router;

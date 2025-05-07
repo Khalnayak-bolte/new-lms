@@ -21,7 +21,7 @@ const StudentDashboard = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/courses');
+      const res = await axios.get('/api/courses');
       setCourses(res.data);
     } catch (err) {
       console.error('Error fetching courses:', err);
@@ -30,7 +30,7 @@ const StudentDashboard = () => {
 
   const fetchNotices = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/notice');
+      const res = await axios.get('/api/notice');
       setNotices(res.data);
     } catch (err) {
       console.error('Error fetching notices:', err);
@@ -39,13 +39,13 @@ const StudentDashboard = () => {
 
   const fetchEnrolledAndAssignments = async () => {
     try {
-      const enrolledRes = await axios.get('http://localhost:5000/api/courses/enrolled', {
+      const enrolledRes = await axios.get('/api/courses/enrolled', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const enrolledIds = enrolledRes.data.map((course) => course._id);
       setEnrolledCourses(enrolledIds);
 
-      const assignmentRes = await axios.get('http://localhost:5000/api/assignments', {
+      const assignmentRes = await axios.get('/api/assignments', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -62,7 +62,7 @@ const StudentDashboard = () => {
   const handleEnroll = async (courseId) => {
     try {
       await axios.post(
-        `http://localhost:5000/api/courses/enroll/${courseId}`,
+        `/api/courses/enroll/${courseId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -86,7 +86,7 @@ const StudentDashboard = () => {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/assignments/submit/${assignmentId}`,
+        `/api/assignments/submit/${assignmentId}`,
         formData,
         {
           headers: {

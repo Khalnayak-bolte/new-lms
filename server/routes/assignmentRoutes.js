@@ -52,7 +52,7 @@ router.post(
 );
 
 // ✅ Fetch all assignments
-router.get(
+router.post(
   '/',
   authenticateUser,
   assignmentController.getAllAssignments

@@ -45,7 +45,7 @@ router.post('/create', isInstructor, upload.array('files', 10), async (req, res)
   }
 });
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const courses = await Course.find().populate('instructor', 'name email');
     res.json(courses);

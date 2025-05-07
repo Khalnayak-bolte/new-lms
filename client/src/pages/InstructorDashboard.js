@@ -20,7 +20,7 @@ const InstructorDashboard = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/courses', {
+      const res = await axios.get('/api/courses', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const instructorCourses = res.data.filter(
@@ -34,7 +34,7 @@ const InstructorDashboard = () => {
 
   const fetchAssignments = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/assignments', {
+      const res = await axios.get('/api/assignments', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(res.data);
@@ -55,7 +55,7 @@ const InstructorDashboard = () => {
     files.forEach((file) => formData.append('files', file));
 
     try {
-      await axios.post('http://localhost:5000/api/courses/create', formData, {
+      await axios.post('/api/courses/create', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -81,7 +81,7 @@ const InstructorDashboard = () => {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/assignments/create',
+        '/api/assignments/create',
         { title, description, deadline, course: courseId },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -107,7 +107,7 @@ const InstructorDashboard = () => {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/assignments/grade',
+        '/api/assignments/grade',
         { assignmentId, studentId, grade, feedback },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -217,7 +217,7 @@ const InstructorDashboard = () => {
                         <strong>Answer:</strong>{' '}
                         {sub.answer ? (
                           <a
-                            href={sub.answer.startsWith('http') ? sub.answer : `http://localhost:5000${sub.answer}`}
+                            href={sub.answer.startsWith('http') ? sub.answer : `${sub.answer}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >

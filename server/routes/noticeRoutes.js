@@ -12,6 +12,6 @@ router.post(
 );
 
 // Get all notices (any user)
-router.get('/', noticeController.getAllNotices);
+router.post('/', noticeController.getAllNotices);
 
 module.exports = router;
